@@ -16,11 +16,11 @@ Following are the input plugins which should be enabled in telegraf to get each 
 - diskio
 - procstat
 
-# Dashboard Sample
+# Dashboard
 ![image1](./dashboard_images/image1.png)
 ![image2](./dashboard_images/image2.png)
 
-# Dashboard Panels and purpose of each panel
+# Purpose of Each Panel using in Dashboard
 - Number of CPU Cores of node.
 - OS Disk Space Used Currently.
 - Currently Memory Using.
