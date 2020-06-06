@@ -15,7 +15,7 @@ This repostiorty contains Grafana Dashboards to visualize your metrics stored in
 
 # Dashboards
 Currently Following are the set of Grafana Dashboards. you can find a detailed description of each dashboard by click on each of follwoing dashboard.
-- [Node Dashboard](https://github.com/OT-MONITORING-KIT/GrafanaDashboards/tree/master/node)
+- [Node Dashboard](./node)
 - [Redis Dashboard](https://github.com/OT-MONITORING-KIT/GrafanaDashboards/tree/master/redis)
 - [Cassandra Dashboard](https://github.com/OT-MONITORING-KIT/GrafanaDashboards/tree/master/cassandra)
 - [Zookeeper Dashboard](https://github.com/OT-MONITORING-KIT/GrafanaDashboards/tree/master/zookeeper)
