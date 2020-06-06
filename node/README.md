@@ -2,7 +2,7 @@
 This Dashboards contains node realted metrics visualization.
 
 # Telegraf Input Plugins
-Following the inpute plugins which should be enabled in telegraf to get each metrics in node dashbord panel.
+Following are the input plugins which should be enabled in telegraf to get each metrics in node dashbord panel.
 - cpu
 - disk
 - io
@@ -20,16 +20,15 @@ Following the inpute plugins which should be enabled in telegraf to get each met
 ![image1](./dashboard_images/image1.png)
 ![image2](./dashboard_images/image2.png)
 
-# Dashboard Panels
-- CPU Cores
-- Disk Space
-- Memory Load
-- Last 1 min System Load
-- Top CPU Consuming Process
-- Top Memory Cunsuming Prcess
-- CPU Usage
-- CPU Usage
-- Memory Utilization
-- Disk Usages
-- Disk IO Write
-- Disk IO READ
+# Dashboard Panels and purpose of each panel
+- Number of CPU Cores of node.
+- OS Disk Space Used Currently.
+- Currently Memory Using.
+- Last 1 min System Load.
+- Top CPU Consuming Process running on node.
+- Top Memory Cunsuming Prcess running on node.
+- CPU Utilization.
+- Memory Utilization.
+- Disk Space usages on each mount point.
+- Disk IO Write.
+- Disk IO READ.
