@@ -29,5 +29,5 @@ Currently Following are the set of Grafana Dashboards. you can find a detailed d
 
 # Create Dashboards
 A Dashboard is a group of widgets but it also provides a lot more feature like folders, variables, time ranges and auto refresh. Follow below mention steps to import our Dashboards.
-- Go to the plus icon on the left side of the homepage and create click on import dashboards.
+- Go to the plus icon on the left side of the homepage and click on import dashboards.
 - Copy the json of above mentioned dashboards and past it in import via panel json box, then click on Load.
