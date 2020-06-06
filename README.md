@@ -4,7 +4,7 @@
   [opstree_homepage]: https://opstree.github.io/
   [opstree_avatar]: https://img.cloudposse.com/150x150/https://github.com/opstree.png
 
-This repostiorty contains Grafana Dashboards to visualize your metrics stored in Prometheus datasource.
+This repostiorty contains Grafana Dashboards to visualize your metrics stored in Prometheus.
 
 # Supported Agent
 - Telegraf
@@ -24,7 +24,7 @@ Currently Following are the set of Grafana Dashboards. you can find a detailed d
 
 # Setup Instructions of Grafana Dashboards
 **Add datasource in Grafana**
-- In Above Dashboards we are using Promehteus Datasource to visualize all the metrics, so we are going to select Promtheus Datasource in Grafana.\
+- In Above Dashboards we are using Promehteus Datasource to visualize all the metrics, so we are going to select Promtheus Datasource in Grafana.
 - Add Prometheus and fill out the url, authentication, scrape interval and name of the data source. Press save and test. It should show Data source is working if Grafana successfully connects to Prometheus.
 
 # Create Dashboards
