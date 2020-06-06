@@ -14,7 +14,7 @@ This repostiorty contains Grafana Dashboards to visualize your metrics stored in
 - Promtheus as Data Source to Store metrics.
 
 # Dashboards
-Currently Following are the set of Grafana Dashboards.
+Currently Following are the set of Grafana Dashboards. you can also find a detailed description of each dashboard in by click on each of follwoing dashboard
 - Node Dashboard
 - Redis Dashboard
 - Cassandra Dashboard
