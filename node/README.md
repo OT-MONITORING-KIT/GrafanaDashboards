@@ -1,5 +1,5 @@
 # Node Dashboard
-This Dashboards contains node realted metrics visualization.
+This Dashboards contains node related metrics visualization.
 
 # Telegraf Input Plugins
 Following are the input plugins which should be enabled in telegraf to get each metrics in node dashbord panel.
