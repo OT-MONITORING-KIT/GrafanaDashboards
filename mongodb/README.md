@@ -1,6 +1,6 @@
 # Mongodb Dashboard
 
-Mongodb Dashboard Visualization uses ```telegraf``` as an exporter
+Mongodb Dashboard Visualization uses ```diff -telegraf``` as an exporter
 
 #### These Dashboards needs ```mongodb``` as Telegraf Input Plugins
 
