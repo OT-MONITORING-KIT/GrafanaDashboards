@@ -40,15 +40,15 @@ Mongodb Dashboard Visualization uses  <img src="./images/logo_telegraf.png" widt
 
 # Dashboards
 
-## Basic Sytem Info
+#### Basic Sytem Info
 
 ![image1](./images/image1.png)
 
-## CPU & Operations count
+#### CPU & Operations count
 
 ![image2](./images/image2.png)
 
-## READ  | WRITE | DELETE Qries
+#### READ  | WRITE | DELETE Queries
 
 ![image2](./images/image3.png)
 
