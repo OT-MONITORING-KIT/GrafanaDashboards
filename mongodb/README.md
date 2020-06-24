@@ -1,10 +1,6 @@
 # Mongodb Dashboard
 
-Mongodb Dashboard Visualization uses 
-```diff 
-- telegraf
-
-``` 
+Mongodb Dashboard Visualization uses <img src="./images/logo_telegraf.png" width="60"> as an exporter
 
 #### These Dashboards needs ```mongodb``` as Telegraf Input Plugins
 
