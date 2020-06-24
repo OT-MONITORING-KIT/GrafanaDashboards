@@ -5,9 +5,16 @@ Mongodb Dashboard Visualization uses ```telegraf``` as an exporter
 #### These Dashboards needs ```mongodb``` as Telegraf Input Plugins
 
 
-# Dashboard
-![image1](./dashboard_images/image1.png)
-![image2](./dashboard_images/image2.png)
+# Dashboards
+
+## Node Level
+![image1](./images/image1.png)
+
+## CPU Usage
+![image2](./images/image2.png)
+
+## operations
+![image2](./images/image3.png)
 
 # Purpose of Each Panel using in Dashboard
 - Number of CPU Cores of node.
