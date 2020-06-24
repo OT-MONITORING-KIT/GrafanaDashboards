@@ -1,7 +1,9 @@
 # Mongodb Dashboard
 
-Mongodb Dashboard Visualization uses ```diff 
--telegraf
+Mongodb Dashboard Visualization uses 
+```diff 
+- telegraf
+
 ``` 
 
 #### These Dashboards needs ```mongodb``` as Telegraf Input Plugins
