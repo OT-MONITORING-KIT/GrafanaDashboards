@@ -1,6 +1,6 @@
 # Mongodb Dashboard
 
-Mongodb Dashboard Visualization uses  <img src="./images/logo_telegraf.png" width="60">  as an exporter. This dashboard work great if MongoDB has replication.
+Mongodb Dashboard Visualization uses  <img src="./images/logo_telegraf.png" width="60">  as an exporter. This dashboard will work Effeciently if replication is enabled in MongoDB Cluster.
 
 #### These Dashboards needs ```mongodb``` as Telegraf Input Plugins
 
