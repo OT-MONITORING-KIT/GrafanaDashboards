@@ -1,6 +1,6 @@
 # Mongodb Dashboard
 
-Mongodb Dashboard Visualization uses  <img src="./images/logo_telegraf.png" width="60">  as an exporter
+Mongodb Dashboard Visualization uses  <img src="./images/logo_telegraf.png" width="60">  as an exporter. This dashboard work great if MongoDB has replication.
 
 #### These Dashboards needs ```mongodb``` as Telegraf Input Plugins
 
@@ -30,4 +30,18 @@ Mongodb Dashboard Visualization uses  <img src="./images/logo_telegraf.png" widt
 
 ![image2](./images/image3.png)
 
-# Purpose of Each Panel using in Dashboard
+## Purpose of Each Panel using in Dashboard
+
+Here you will see these information in dashboards
+
+- Current Master from Mongo replica Set
+- Total Replication count
+- Memory used by node
+- MongoDb Uptime
+- Master CPU Utilization
+- CPU Utilization in each node
+- Total operations (read,write,update,delete)
+- Total Read operations
+- Total Write operations
+- Total Update operations
+- Total Delete operations
