@@ -12,17 +12,17 @@
       }
     ]
   },
-  "description": "A Redis Server Performance Dashboard",
+  "description": "A Redis Server Performance Monitoring Redis Server with Prometheus and telegraf agent using Redis agent",
   "editable": true,
-  "gnetId": 6908,
+  "gnetId": 12497,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1588649854690,
+  "id": 9,
+  "iteration": 1593242332992,
   "links": [],
   "panels": [
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "$datasource",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -43,8 +43,14 @@
         "#8F3BB8",
         "#d44a3a"
       ],
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$datasource",
       "description": "Total Clusters Enabled",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -93,7 +99,7 @@
         "lineColor": "rgb(31, 120, 193)",
         "show": false
       },
-      "tableColumn": "",
+      "tableColumn": "redis_cluster_enabled{aof_last_bgrewrite_status=\"ok\", aof_last_write_status=\"ok\", env=\"prod\", host=\"theone.us-central1-a.c.theone-277307.internal\", instance=\"10.128.0.3:9273\", job=\"telegraf\", maxmemory_policy=\"noeviction\", port=\"6379\", rdb_last_bgsave_status=\"ok\", redis_version=\"4.0.9\", replication_role=\"master\", server=\"localhost\"}",
       "targets": [
         {
           "expr": "redis_cluster_enabled{instance=\"$Server\"}",
@@ -169,9 +175,15 @@
         "#0a50a1",
         "#d44a3a"
       ],
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$datasource",
       "description": "Redis Up Time",
-      "format": "dthms",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "dtdurations",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -219,7 +231,7 @@
         "lineColor": "rgb(31, 120, 193)",
         "show": false
       },
-      "tableColumn": "",
+      "tableColumn": "redis_uptime{aof_last_bgrewrite_status=\"ok\", aof_last_write_status=\"ok\", env=\"prod\", host=\"theone.us-central1-a.c.theone-277307.internal\", instance=\"10.128.0.3:9273\", job=\"telegraf\", maxmemory_policy=\"noeviction\", port=\"6379\", rdb_last_bgsave_status=\"ok\", redis_version=\"4.0.9\", replication_role=\"master\", server=\"localhost\"}",
       "targets": [
         {
           "expr": "redis_uptime{instance=\"$Server\"}",
@@ -289,8 +301,14 @@
         "#bf1b00",
         "#d44a3a"
       ],
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$datasource",
       "description": "Total Clients Connected",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -339,7 +357,7 @@
         "lineColor": "rgb(31, 120, 193)",
         "show": false
       },
-      "tableColumn": "",
+      "tableColumn": "redis_clients{aof_last_bgrewrite_status=\"ok\", aof_last_write_status=\"ok\", env=\"prod\", host=\"theone.us-central1-a.c.theone-277307.internal\", instance=\"10.128.0.3:9273\", job=\"telegraf\", maxmemory_policy=\"noeviction\", port=\"6379\", rdb_last_bgsave_status=\"ok\", redis_version=\"4.0.9\", replication_role=\"master\", server=\"localhost\"}",
       "targets": [
         {
           "expr": "redis_clients{instance=\"$Server\"}",
@@ -413,8 +431,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$datasource",
       "description": "User CPU consumed by the Redis server",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -562,7 +586,13 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -614,7 +644,7 @@
         "ymax": null,
         "ymin": null
       },
-      "tableColumn": "",
+      "tableColumn": "10.128.0.3:9273",
       "targets": [
         {
           "expr": "redis_total_connections_received{instance=\"$Server\"}",
@@ -646,8 +676,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$datasource",
       "description": "Total number of bytes allocated by Redis using its allocator",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -819,7 +855,7 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "$datasource",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -836,7 +872,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -942,7 +984,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 3,
       "fillGradient": 0,
       "gridPos": {
@@ -1033,7 +1081,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1133,7 +1187,13 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1215,8 +1275,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$datasource",
       "description": "Total number of commands processed by the server",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1362,8 +1428,14 @@
         "#58140c",
         "#d44a3a"
       ],
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$datasource",
       "description": "Total Commands Processed",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1412,7 +1484,7 @@
         "lineColor": "rgb(31, 120, 193)",
         "show": false
       },
-      "tableColumn": "",
+      "tableColumn": "redis_total_commands_processed{aof_last_bgrewrite_status=\"ok\", aof_last_write_status=\"ok\", env=\"prod\", host=\"theone.us-central1-a.c.theone-277307.internal\", instance=\"10.128.0.3:9273\", job=\"telegraf\", maxmemory_policy=\"noeviction\", port=\"6379\", rdb_last_bgsave_status=\"ok\", redis_version=\"4.0.9\", replication_role=\"master\", server=\"localhost\"}",
       "targets": [
         {
           "expr": "redis_total_commands_processed{instance=\"$Server\"}",
@@ -1484,7 +1556,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1581,8 +1659,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$datasource",
       "description": "Number of commands processed per second",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1714,7 +1798,7 @@
       }
     },
     {
-      "datasource": null,
+      "datasource": "$datasource",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1732,8 +1816,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$datasource",
       "description": "Total number of connections accepted by the server",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 4,
       "fillGradient": 0,
       "gridPos": {
@@ -1884,7 +1974,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1976,24 +2072,25 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 22,
+  "schemaVersion": 25,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "Prometheus",
-          "value": "Prometheus"
+          "selected": true,
+          "text": "prometheus.internal-odmont.com",
+          "value": "prometheus.internal-odmont.com"
         },
         "hide": 0,
         "includeAll": false,
         "label": "",
         "multi": false,
-        "name": "DS_INFLUXDB",
+        "name": "datasource",
         "options": [],
         "query": "prometheus",
+        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2002,19 +2099,19 @@
       {
         "allValue": null,
         "current": {
-          "text": "telegraf:9273",
-          "value": "telegraf:9273"
+          "selected": false,
+          "text": "10.128.0.3:9273",
+          "value": "10.128.0.3:9273"
         },
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "label_values(redis_uptime, instance)",
+        "datasource": "$datasource",
+        "definition": "label_values(redis_uptime,instance)",
         "hide": 0,
         "includeAll": false,
-        "index": -1,
         "label": "Server",
         "multi": false,
         "name": "Server",
         "options": [],
-        "query": "label_values(redis_uptime, instance)",
+        "query": "label_values(redis_uptime,instance)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2028,19 +2125,19 @@
       {
         "allValue": null,
         "current": {
-          "text": "telegraf.internal.cloudapp.net",
-          "value": "telegraf.internal.cloudapp.net"
+          "selected": true,
+          "text": "theone.us-central1-a.c.theone-277307.internal",
+          "value": "theone.us-central1-a.c.theone-277307.internal"
         },
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "label_values(redis_uptime, host)",
+        "datasource": "$datasource",
+        "definition": "label_values(redis_uptime,host)",
         "hide": 0,
         "includeAll": false,
-        "index": -1,
         "label": "Host",
         "multi": false,
         "name": "Host",
         "options": [],
-        "query": "label_values(redis_uptime, host)",
+        "query": "label_values(redis_uptime,host)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2059,7 +2156,6 @@
   },
   "timepicker": {
     "refresh_intervals": [
-      "5s",
       "10s",
       "30s",
       "1m",
