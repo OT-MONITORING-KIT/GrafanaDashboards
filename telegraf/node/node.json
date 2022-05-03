@@ -1,4 +1,43 @@
 {
+  "__inputs": [],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "7.0.1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -12,15 +51,36 @@
       }
     ]
   },
+  "description": "System Information Dashboard provides information about the node",
   "editable": true,
-  "gnetId": null,
+  "gnetId": 12484,
   "graphTooltip": 0,
-  "id": 7,
-  "iteration": 1590382340721,
+  "id": null,
+  "iteration": 1619001451921,
   "links": [],
   "panels": [
     {
       "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 5,
         "w": 3,
@@ -30,34 +90,17 @@
       "id": 2,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [],
           "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        }
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "7.0.1",
       "targets": [
         {
           "expr": "system_n_cpus{instance=~ \"$instance\"}",
@@ -71,6 +114,23 @@
     },
     {
       "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-yellow",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 5,
         "w": 5,
@@ -80,34 +140,22 @@
       "id": 4,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "semi-dark-yellow",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "bytes"
-          },
-          "overrides": [],
           "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        }
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "7.0.1",
       "targets": [
         {
-          "expr": "disk_used{instance=~ \"$instance$\",path = '/'}",
+          "expr": "disk_used_percent{instance=~ \"$instance$\",path = '/'}",
+          "interval": "",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -118,6 +166,27 @@
     },
     {
       "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(23, 222, 202)",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 5,
         "w": 16,
@@ -127,34 +196,16 @@
       "id": 22,
       "options": {
         "displayMode": "basic",
-        "fieldOptions": {
+        "orientation": "vertical",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(23, 222, 202)",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "short"
-          },
-          "overrides": [],
           "values": false
         },
-        "orientation": "vertical",
         "showUnfilled": false
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "7.0.1",
       "targets": [
         {
           "expr": "topk(1,procstat_cpu_usage{instance=~\"$instance\"})",
@@ -171,6 +222,23 @@
     },
     {
       "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-purple",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 5,
         "w": 5,
@@ -180,31 +248,17 @@
       "id": 6,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "light-purple",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "bytes"
-          },
-          "overrides": [],
           "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        }
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "7.0.1",
       "targets": [
         {
           "expr": "sum(mem_used{instance=~\"$instance\"})",
@@ -218,6 +272,22 @@
     },
     {
       "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 5,
         "w": 3,
@@ -227,30 +297,17 @@
       "id": 8,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "min"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
           "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        }
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "7.0.1",
       "targets": [
         {
           "expr": "system_load1{instance=~ \"$instance\"}",
@@ -264,6 +321,26 @@
     },
     {
       "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(214, 144, 102)",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 5,
         "w": 16,
@@ -274,33 +351,16 @@
       "interval": "",
       "options": {
         "displayMode": "basic",
-        "fieldOptions": {
+        "orientation": "vertical",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(214, 144, 102)",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [],
           "values": false
         },
-        "orientation": "vertical",
         "showUnfilled": false
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "7.0.1",
       "targets": [
         {
           "expr": "topk(5,procstat_memory_usage{instance=~\"$instance\"})",
@@ -322,6 +382,12 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 10,
       "fillGradient": 0,
       "gridPos": {
@@ -406,6 +472,27 @@
     },
     {
       "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 7,
         "w": 7,
@@ -414,35 +501,17 @@
       },
       "id": 12,
       "options": {
-        "fieldOptions": {
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "orange",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "title": ""
-          },
-          "overrides": [],
           "values": false
         },
-        "orientation": "auto",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "7.0.1",
       "targets": [
         {
           "expr": "100 - (cpu_usage_idle{instance=~ \"$instance*\",cpu=\"cpu-total\"})",
@@ -463,6 +532,12 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 2,
       "fillGradient": 0,
       "gridPos": {
@@ -514,22 +589,26 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mem_used{instance=~\"$instance*\"}",
+          "expr": "mem_used_percent{instance=~\"$instance*\"}",
+          "interval": "",
           "legendFormat": "mem_used",
           "refId": "A"
         },
         {
-          "expr": "mem_buffered{instance=~\"$instance\"}",
+          "expr": "(mem_buffered{instance=~\"$instance\"}/mem_total{instance=~\"$instance\"})*100",
+          "interval": "",
           "legendFormat": "mem_buffered",
           "refId": "B"
         },
         {
-          "expr": "mem_cached{instance=~\"$instance\"}",
+          "expr": "(mem_cached{instance=~\"$instance\"}/mem_total{instance=~\"$instance\"})*100",
+          "interval": "",
           "legendFormat": "mem_cached",
           "refId": "C"
         },
         {
-          "expr": "swap_used{instance=~\"$instance\"}",
+          "expr": "(swap_used{instance=~\"$instance\"}/mem_total{instance=~\"$instance\"})*100",
+          "interval": "",
           "legendFormat": "mem_swap",
           "refId": "D"
         }
@@ -554,7 +633,8 @@
       },
       "yaxes": [
         {
-          "format": "bytes",
+          "$$hashKey": "object:998",
+          "format": "percent",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -562,7 +642,8 @@
           "show": true
         },
         {
-          "format": "bytes",
+          "$$hashKey": "object:999",
+          "format": "percent",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -581,6 +662,12 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -670,7 +757,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -731,6 +824,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:902",
           "format": "bytes",
           "label": null,
           "logBase": 1,
@@ -739,6 +833,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:903",
           "format": "bytes",
           "label": null,
           "logBase": 1,
@@ -758,6 +853,12 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -840,13 +941,14 @@
       }
     }
   ],
-  "schemaVersion": 22,
+  "schemaVersion": 25,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
+          "selected": false,
           "text": "prometheus.internal-odmont.com",
           "value": "prometheus.internal-odmont.com"
         },
@@ -864,10 +966,7 @@
       },
       {
         "allValue": null,
-        "current": {
-          "text": "10.128.0.3:9273",
-          "value": "10.128.0.3:9273"
-        },
+        "current": {},
         "datasource": "$datasource",
         "definition": "label_values(system_uptime, instance)",
         "hide": 0,
@@ -954,7 +1053,6 @@
   },
   "timepicker": {
     "refresh_intervals": [
-      "5s",
       "10s",
       "30s",
       "1m",

@@ -1,0 +1,2061 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS.INTERNAL-ODMONT.COM",
+      "label": "prometheus.internal-odmont.com",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "7.0.1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Grafana Dashboard for Host Level Metrics using Node Exporter",
+  "editable": true,
+  "gnetId": 15780,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1650376377967,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": "${DS_PROMETHEUS.INTERNAL-ODMONT.COM}",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 32,
+      "panels": [],
+      "title": "Historical Mertics",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 20,
+        "x": 0,
+        "y": 1
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true,
+        "dataLinks": []
+      },
+      "percentage": true,
+      "pluginVersion": "8.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (mode)(irate(node_cpu_seconds_total{mode=\"system\",instance=\"$instance\",job=\"$job\"}[5m])) * 100",
+          "interval": "",
+          "legendFormat": "System ",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum by (mode)(irate(node_cpu_seconds_total{mode='user',instance=\"$instance\",job=\"$job\"}[5m])) * 100",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "User - Normal processes executing in user mode",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum by (mode)(irate(node_cpu_seconds_total{mode='nice',instance=\"$instance\",job=\"$job\"}[5m])) * 100",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Nice",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum by (mode)(irate(node_cpu_seconds_total{mode='idle',instance=\"$instance\",job=\"$job\"}[5m])) * 100",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Idle",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum by (mode)(irate(node_cpu_seconds_total{mode='iowait',instance=\"$instance\",job=\"$job\"}[5m])) * 100",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Iowait",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [
+        {
+          "$$hashKey": "object:1259",
+          "colorMode": "critical",
+          "fill": false,
+          "line": false,
+          "op": "lt",
+          "value": 90,
+          "yaxis": "left"
+        },
+        {
+          "$$hashKey": "object:1265",
+          "colorMode": "warning",
+          "fill": false,
+          "line": false,
+          "op": "lt",
+          "value": 75,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CPU",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1231",
+          "format": "short",
+          "label": "percentage",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1232",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 20,
+        "y": 1
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "count(count(node_cpu_seconds_total{instance=\"$instance\"}) by (cpu))",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "CPU Core",
+      "type": "stat"
+    },
+    {
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-yellow",
+            "mode": "fixed"
+          },
+          "custom": {},
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 22,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "node_time_seconds{instance=\"$instance\"} - node_boot_time_seconds{instance=\"$instance\"}",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Uptime",
+      "type": "stat"
+    },
+    {
+      "datasource": "$datasource",
+      "description": "Busy state of all CPU cores together (5 min average)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "decimals": 0,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 80
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 20,
+        "y": 3
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "avg(node_load1{instance=\"$instance\",job=\"$job\"}) /  count(count(node_cpu_seconds_total{instance=\"$instance\",job=\"$job\"}) by (cpu))",
+          "interval": "",
+          "legendFormat": "1 min",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "avg(node_load5{instance=\"$instance\",job=\"$job\"}) /  count(count(node_cpu_seconds_total{instance=\"$instance\",job=\"$job\"}) by (cpu)) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "5 min",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "avg(node_load15{instance=\"$instance\",job=\"$job\"}) /  count(count(node_cpu_seconds_total{instance=\"$instance\",job=\"$job\"}) by (cpu)) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "15 min",
+          "refId": "C"
+        }
+      ],
+      "title": "Sys Load avg",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "description": "Basic memory usage",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 2,
+      "fillGradient": 6,
+      "gridPos": {
+        "h": 7,
+        "w": 19,
+        "x": 0,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 10,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true,
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pluginVersion": "8.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:1360",
+          "alias": "RAM Total",
+          "color": "#FFF899",
+          "fill": 0,
+          "stack": false
+        },
+        {
+          "$$hashKey": "object:1402",
+          "alias": "RAM Cache + Buffer",
+          "color": "#1F60C4"
+        },
+        {
+          "$$hashKey": "object:1410",
+          "alias": "RAM Free",
+          "color": "#37872D",
+          "yaxis": 1
+        },
+        {
+          "$$hashKey": "object:1422",
+          "alias": "Avaliable",
+          "color": "#FFB357",
+          "fill": 0,
+          "stack": false
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "node_memory_MemTotal_bytes{instance=\"$instance\",job=\"$job\"}",
+          "interval": "",
+          "legendFormat": "RAM Total",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "node_memory_MemTotal_bytes{instance=\"$instance\",job=\"$job\"} - node_memory_MemFree_bytes{instance=\"$instance\",job=\"$job\"} - (node_memory_Cached_bytes{instance=\"$instance\",job=\"$job\"} + node_memory_Buffers_bytes{instance=\"$instan\",job=\"$job\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "RAM Used",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "node_memory_Cached_bytes{instance=\"$instance\",job=\"$job\"} + node_memory_Buffers_bytes{instance=\"$instance\",job=\"$job\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "RAM Cache + Buffer",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "node_memory_MemFree_bytes{instance=\"$instance\",job=\"$job\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "RAM Free",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "(node_memory_SwapTotal_bytes{instance=\"$instance\",job=\"$job\"} - node_memory_SwapFree_bytes{instance=\"$instance\",job=\"$job\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "SWAP Used",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Memory Basic",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1332",
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1333",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": "$datasource",
+      "description": "Node Memory info",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "light-orange",
+                "value": 0.2
+              },
+              {
+                "color": "dark-red",
+                "value": 0.7
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 0.9
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 5,
+        "x": 19,
+        "y": 9
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ceil(node_memory_MemTotal_bytes{instance=\"$instance\"}/(1024*1024))/1024",
+          "interval": "",
+          "legendFormat": "Total GB",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "ceil(node_memory_MemFree_bytes{instance=\"$instance\"}/(1024*1024))/1024",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Available GB",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "(ceil(node_memory_MemTotal_bytes{instance=\"$instance\"}/(1024*1024))/1024)-(ceil(node_memory_MemFree_bytes{instance=\"$instance\"})/(1024*1024))/1024",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Used GB",
+          "refId": "C"
+        }
+      ],
+      "title": "RAM info",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 3,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 19,
+        "x": 0,
+        "y": 16
+      },
+      "hiddenSeries": false,
+      "id": 14,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true,
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pluginVersion": "8.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "node_filesystem_size_bytes{instance=\"$instance\",job=\"$job\",device!~'rootfs'} - node_filesystem_avail_bytes{instance=\"$instance\",job=\"$job\",device!~'rootfs'}",
+          "interval": "",
+          "legendFormat": "{{mountpoint}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "$$hashKey": "object:1529",
+          "colorMode": "critical",
+          "fill": false,
+          "fillColor": "rgba(51, 162, 229, 0.2)",
+          "line": true,
+          "lineColor": "rgba(31, 96, 196, 0.6)",
+          "op": "gt",
+          "value": null,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Disk Space Used",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1501",
+          "format": "bytes",
+          "label": "bytes",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1502",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": "$datasource",
+      "description": "device=\"/dev/root\n",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 4.5
+              },
+              {
+                "color": "light-green",
+                "value": 6
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 5,
+        "x": 19,
+        "y": 16
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ceil(node_filesystem_size_bytes{device=\"/dev/root\",instance=\"$instance\"}/(1024*1024))/1024",
+          "interval": "",
+          "legendFormat": "Total GB",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "ceil(node_filesystem_avail_bytes{device=\"/dev/root\",instance=\"$instance\"}/(1024*1024))/1024",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Available GB",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "ceil(node_filesystem_size_bytes{device=\"/dev/root\",instance=\"$instance\"}/(1024*1024))/1024-ceil(node_filesystem_avail_bytes{device=\"/dev/root\",instance=\"$instance\"}/(1024*1024))/1024",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Used GB",
+          "refId": "C"
+        }
+      ],
+      "title": "ROOT FILESYSTEM",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "description": "Network received and transmit",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "unit": "KBs"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "hiddenSeries": false,
+      "id": 18,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true,
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pluginVersion": "8.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "irate(node_network_receive_bytes_total{instance=\"$instance\"}[5m])",
+          "interval": "",
+          "legendFormat": "{{device}}  receive",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "irate(node_network_transmit_bytes_total{ instance=\"$instance\"}[5m])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{device}} transmit",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Network I/O",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1686",
+          "format": "KBs",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1687",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "hiddenSeries": false,
+      "id": 20,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideZero": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true,
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pluginVersion": "8.2.2",
+      "pointradius": 0.5,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:1804",
+          "alias": "/.*sda_.*/",
+          "color": "#FFA6B0"
+        },
+        {
+          "$$hashKey": "object:1812",
+          "alias": "/.*sdb_.*/",
+          "color": "#FFCB7D"
+        },
+        {
+          "$$hashKey": "object:1820",
+          "alias": "/.*sdc_.*/",
+          "color": "#FFF899"
+        },
+        {
+          "$$hashKey": "object:1828",
+          "alias": "/.*sda1.*/",
+          "color": "#C8F2C2"
+        },
+        {
+          "$$hashKey": "object:1836",
+          "alias": "/.*sda2_.*/",
+          "color": "#C0D8FF"
+        },
+        {
+          "$$hashKey": "object:1844",
+          "alias": "/.*sda3_.*/",
+          "color": "#DEB6F2"
+        },
+        {
+          "$$hashKey": "object:1852",
+          "alias": "/.*sdb1.*/",
+          "color": "#FF7383"
+        },
+        {
+          "$$hashKey": "object:1860",
+          "alias": "/.*sdb2.*/",
+          "color": "#FFB357"
+        },
+        {
+          "$$hashKey": "object:1868",
+          "alias": "/.*sdb3.*/",
+          "color": "#FFEE52"
+        },
+        {
+          "$$hashKey": "object:1876",
+          "alias": "/.*sdc1.*/",
+          "color": "#96D98D"
+        },
+        {
+          "$$hashKey": "object:1887",
+          "alias": "/.*sdc2.*/",
+          "color": "#8AB8FF"
+        },
+        {
+          "$$hashKey": "object:1895",
+          "alias": "/.*sdc3.*/",
+          "color": "#CA95E5"
+        },
+        {
+          "$$hashKey": "object:1903",
+          "alias": "/.*sdd1.*/",
+          "color": "#E02F44"
+        },
+        {
+          "$$hashKey": "object:1911",
+          "alias": "/.*sdd2.*/",
+          "color": "#FF780A"
+        },
+        {
+          "$$hashKey": "object:1919",
+          "alias": "/.*sdd3.*/",
+          "color": "#F2CC0C"
+        },
+        {
+          "$$hashKey": "object:1927",
+          "alias": "/.*sde1.*/",
+          "color": "#56A64B"
+        },
+        {
+          "$$hashKey": "object:1935",
+          "alias": "/.*sdd2.*/",
+          "color": "#3274D9"
+        },
+        {
+          "$$hashKey": "object:1943",
+          "alias": "/.*sde3.*/",
+          "color": "#A352CC"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "rate(node_disk_reads_completed_total{instance=\"$instance\",job=\"$job\",device=~\"$device\"}[$__rate_interval])",
+          "interval": "",
+          "legendFormat": "{{device}} - Reads completed",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(node_disk_writes_completed_total{instance=\"$instance\",job=\"$job\",device=~\"$device\"}[$__rate_interval])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{device}} - Writes completed",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [
+        {
+          "$$hashKey": "object:1951",
+          "colorMode": "ok",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 0,
+          "yaxis": "left"
+        },
+        {
+          "$$hashKey": "object:1957",
+          "colorMode": "warning",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 3,
+          "yaxis": "left"
+        },
+        {
+          "$$hashKey": "object:1963",
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 5,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Disk I/O",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1775",
+          "format": "iops",
+          "label": "IO read (-) / write (+)",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1776",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": "${DS_PROMETHEUS.INTERNAL-ODMONT.COM}",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 34,
+      "panels": [],
+      "title": "Current metrics",
+      "type": "row"
+    },
+    {
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 75
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 33
+      },
+      "id": 22,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "(((count(count(node_cpu_seconds_total{instance=\"$instance\",job=\"$job\"}) by (cpu))) - avg(sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=\"$instance\",job=\"$job\"}[$__rate_interval])))) * 100) / count(count(node_cpu_seconds_total{instance=\"$instance\",job=\"$job\"}) by (cpu))",
+          "interval": "",
+          "legendFormat": "CPU Usage",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "100 - ((node_memory_MemAvailable_bytes{instance=\"$instance\",job=\"$job\"} * 100) / node_memory_MemTotal_bytes{instance=\"$instance\",job=\"$job\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "RAM Used",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=\"$instance\",job=\"$job\",mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{instance=\"$instance\",job=\"$job\",mountpoint=\"/\",fstype!=\"rootfs\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Root FS Used",
+          "refId": "C"
+        }
+      ],
+      "transparent": true,
+      "type": "bargauge"
+    },
+    {
+      "datasource": "$datasource",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 12,
+        "y": 33
+      },
+      "id": 24,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "node_network_transmit_bytes_total{device=\"$network_interface\",instance=~'$instance'}",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Network Traffic Out",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 33
+      },
+      "id": 26,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "node_network_receive_bytes_total{device=\"$network_interface\",instance=~'$instance'}",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Network Traffic In",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 100000
+              },
+              {
+                "color": "dark-green",
+                "value": 10000000
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 20,
+        "y": 33
+      },
+      "id": 28,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "avg(node_filesystem_files_free{instance=~\"$instance\",fstype=~\"ext.?|xfs\"})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Free inodes:$maxmount ",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "mountpoint"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Mounted on"
+              },
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.align",
+                "value": "auto"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Avail"
+              },
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "custom.align",
+                "value": "auto"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-red",
+                      "value": null
+                    },
+                    {
+                      "color": "semi-dark-orange",
+                      "value": 10000000000
+                    },
+                    {
+                      "color": "semi-dark-green",
+                      "value": 20000000000
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #C"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Used"
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "custom.align",
+                "value": "auto"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 70
+                    },
+                    {
+                      "color": "red",
+                      "value": 85
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Size"
+              },
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "custom.align",
+                "value": "auto"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fstype"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Filesystem"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.align",
+                "value": "auto"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "device"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Device"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.align",
+                "value": "auto"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 38
+      },
+      "id": 30,
+      "options": {
+        "frameIndex": 0,
+        "showHeader": true
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "node_filesystem_size_bytes{instance=~'$instance',fstype=~\"ext.*|xfs\",mountpoint !~\".*pod.*\"}-0",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "总量",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "node_filesystem_avail_bytes {instance=~'$instance',fstype=~\"ext.*|xfs\",mountpoint !~\".*pod.*\"}-0",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "(node_filesystem_size_bytes{instance=~'$instance',fstype=~\"ext.*|xfs\",mountpoint !~\".*pod.*\"}-node_filesystem_free_bytes{instance=~'$instance',fstype=~\"ext.*|xfs\",mountpoint !~\".*pod.*\"}) *100/(node_filesystem_avail_bytes {instance=~'$instance',fstype=~\"ext.*|xfs\",mountpoint !~\".*pod.*\"}+(node_filesystem_size_bytes{instance=~'$instance',fstype=~\"ext.*|xfs\",mountpoint !~\".*pod.*\"}-node_filesystem_free_bytes{instance=~'$instance',fstype=~\"ext.*|xfs\",mountpoint !~\".*pod.*\"}))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "C"
+        }
+      ],
+      "title": "Disk Space Used ",
+      "type": "table"
+    }
+  ],
+  "schemaVersion": 25,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "prometheus.internal-odmont.com",
+          "value": "prometheus.internal-odmont.com"
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Datasource",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$datasource",
+        "definition": "label_values(node_uname_info, instance)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Instance",
+        "multi": false,
+        "name": "instance",
+        "options": [],
+        "query": "label_values(node_uname_info, instance)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$datasource",
+        "definition": "label_values(node_uname_info, job)",
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "includeAll": false,
+        "label": "Category",
+        "multi": false,
+        "name": "job",
+        "options": [],
+        "query": "label_values(node_uname_info, job)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$datasource",
+        "definition": "label_values(node_uname_info, nodename)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Hostname",
+        "multi": false,
+        "name": "hostname",
+        "options": [],
+        "query": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$datasource",
+        "definition": "label_values(node_disk_reads_completed_total, device)",
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "includeAll": false,
+        "label": "device",
+        "multi": false,
+        "name": "device",
+        "options": [],
+        "query": "label_values(node_disk_reads_completed_total, device)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$datasource",
+        "definition": "label_values(node_filesystem_size_bytes, device)",
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "devices",
+        "options": [],
+        "query": "label_values(node_filesystem_size_bytes, device)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$datasource",
+        "definition": "",
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "includeAll": false,
+        "label": "maxmount",
+        "multi": false,
+        "name": "maxmount",
+        "options": [],
+        "query": "",
+        "refresh": 2,
+        "regex": "/.*\\\"(.*)\\\".*/",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$datasource",
+        "definition": "query_result(count(node_uname_info{job=~\"$job\"}))",
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "includeAll": false,
+        "label": "total_servers",
+        "multi": false,
+        "name": "total",
+        "options": [],
+        "query": "query_result(count(node_uname_info{job=~\"$job\"}))",
+        "refresh": 1,
+        "regex": "/{} (.*) .*/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$datasource",
+        "definition": "label_values(node_network_info{operstate=\"up\"}, device)",
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "includeAll": false,
+        "label": "network_interface",
+        "multi": false,
+        "name": "network_interface",
+        "options": [],
+        "query": "label_values(node_network_info{operstate=\"up\"}, device)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Opstree/Node Exporter A",
+  "uid": "XmsJAHfnK",
+  "version": 4
+}
