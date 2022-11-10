@@ -1,7 +1,7 @@
 ## Dashboard Images
 
-![Screenshot1](dashboard_images/mongo-1.jpeg)
-![Screenshot2](dashboard_images/mongo-2.jpeg)
-![Screenshot3](dashboard_images/mongo-3.jpeg)
-![Screenshot4](dashboard_images/mongo-4.jpeg)
-![Screenshot5](dashboard_images/mongo-5.jpeg)
+![Screenshot1](dashboard_images/mongo-1.png)
+![Screenshot2](dashboard_images/mongo-2.png)
+![Screenshot3](dashboard_images/mongo-3.png)
+![Screenshot4](dashboard_images/mongo-4.png)
+![Screenshot5](dashboard_images/mongo-5.png)

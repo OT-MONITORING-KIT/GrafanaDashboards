@@ -49,4 +49,12 @@ server {
 
 Metrics will be available at http://your.nginx:9145/metrics
 
+## Dashboard Images
+
+![Screenshot1](dashboard_images/nginx-1.jpeg)
+![Screenshot2](dashboard_images/nginx-2.jpeg)
+![Screenshot3](dashboard_images/nginx-3.jpeg)
+![Screenshot4](dashboard_images/nginx-4.jpeg)
+![Screenshot5](dashboard_images/nginx-5.jpeg)
+
 ### kirti.nehra@opstree.com
